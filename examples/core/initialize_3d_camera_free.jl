@@ -19,13 +19,12 @@ function main()
     )
 
     cubePosition = Raylib.rayvector(0, 0, 0)
-
-    Raylib.SetCameraMode(camera, Int(Raylib.CAMERA_FREE))   # Set a free camera mode
+    cameraMode = Raylib.CAMERA_FREE
 
     Raylib.SetTargetFPS(60)
     while !Raylib.WindowShouldClose()   # Detect window close button or ESC key
         # Update
-        camera = Raylib.UpdateCamera(camera)    # Update camera
+        camera = Raylib.UpdateCamera(camera, cameraMode)    # Update camera
         Raylib.IsKeyDown(Int('Z')) && (camera = Raylib.RayCamera3D(
             camera.position,
             Raylib.rayvector(0, 0, 0),

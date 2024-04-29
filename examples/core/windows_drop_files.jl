@@ -10,11 +10,11 @@ function main()
     Raylib.SetTargetFPS(60)
 
     droppedFiles = Vector{String}()
-    
+
     while !Raylib.WindowShouldClose()
 
         if Raylib.IsFileDropped()
-            droppedFiles = Raylib.GetDroppedFiles()
+            droppedFiles = Raylib.LoadDroppedFiles()
         end
 
         Raylib.BeginDrawing()
@@ -34,12 +34,12 @@ function main()
                 Raylib.DrawText(droppedFiles[i], 120, 100 + 40*(i-1), 10, Raylib.GRAY)
 
             end
-            Raylib.DrawText("Dropped new files...", 100, 110 + 40length(droppedFiles), 20, Raylib.DARKGRAY)            
+            Raylib.DrawText("Dropped new files...", 100, 110 + 40length(droppedFiles), 20, Raylib.DARKGRAY)
         end
 
         Raylib.EndDrawing()
     end
 
-    Raylib.ClearDroppedFiles()
+    Raylib.UnloadDroppedFiles(droppedFiles)
     Raylib.CloseWindow()
 end

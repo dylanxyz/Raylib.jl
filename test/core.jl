@@ -72,18 +72,16 @@ end
         Raylib.CAMERA_ORTHOGRAPHIC
     ])
 
-    Raylib.SetCameraMode(camera, Int(Raylib.CAMERA_FIRST_PERSON))
-    Raylib.UpdateCamera!(camera)
+    Raylib.UpdateCamera!(camera, Raylib.CAMERA_FIRST_PERSON)
     @test !test_camera(camera, [
         Raylib.rayvector(0, 10, 10) + Raylib.rayvector(1, 2, 3),
         Raylib.rayvector(0, 0, 0) + Raylib.rayvector(3, 2, 1),
         Raylib.rayvector(0, 1, 0) + Raylib.rayvector(4, 5, 6),
         60,
-        Raylib.CAMERA_ORTHOGRAPHIC
+        Raylib.CAMERA_FIRST_PERSON
     ])
 
-    Raylib.SetCameraMode(camera, Int(Raylib.CAMERA_CUSTOM))
-    Raylib.UpdateCamera!(camera)
+    Raylib.UpdateCamera!(camera, Raylib.CAMERA_CUSTOM)
     camera.position = Raylib.rayvector(1, 2, 3)
     camera.target = Raylib.rayvector(3, 2, 1)
     camera.up = Raylib.rayvector(4, 5, 6)
@@ -97,8 +95,7 @@ end
         Raylib.CAMERA_ORTHOGRAPHIC
     ])
 
-    Raylib.SetCameraMode(camera, Int(Raylib.CAMERA_FIRST_PERSON))
-    camera = Raylib.UpdateCamera(camera)
+    camera = Raylib.UpdateCamera(camera, Raylib.CAMERA_FIRST_PERSON)
     @test !test_camera(camera, [
         Raylib.rayvector(1, 2, 3),
         Raylib.rayvector(3, 2, 1),

@@ -39,11 +39,11 @@ function main()
         )
     end
 
-    Raylib.SetCameraMode(camera, Int(Raylib.CAMERA_FIRST_PERSON))
+    cameraMode = Raylib.CAMERA_FIRST_PERSON
     Raylib.SetTargetFPS(60)
 
     while !Raylib.WindowShouldClose()
-        Raylib.UpdateCamera!(camera)
+        Raylib.UpdateCamera!(camera, cameraMode)
 
         Raylib.BeginDrawing()
         Raylib.ClearBackground(RAYWHITE)
