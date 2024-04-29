@@ -3,9 +3,9 @@
 
 Return new camera with updated parameter.
 """
-function Binding.UpdateCamera(camera::RayCamera3D)
+function Binding.UpdateCamera(camera::RayCamera3D, mode::CameraMode)
     new_camera_ref = Ref(camera)
-    UpdateCamera(new_camera_ref)
+    UpdateCamera(new_camera_ref, Cint(mode))
 
     return new_camera_ref[]
 end
@@ -15,22 +15,19 @@ end
 
 Update camera position for selected mode
 """
-function UpdateCamera!(camera::RayCamera3D)
+function UpdateCamera!(camera::RayCamera3D, mode::CameraMode)
     camera_ptr = convert(Ptr{RayCamera3D}, pointer_from_objref(camera))
-    UpdateCamera(camera_ptr)
+    UpdateCamera(camera_ptr, Cint(mode))
     return camera
 end
 
-"""
-    GetDroppedFiles()
+Base.length(it::RayFilePathList) = it.count
+Base.iterate(it::RayFilePathList, i=1) = i>it.count ? nothing : (it[i], i+1)
 
-Return a list of dropped file paths.
-"""
-function Binding.GetDroppedFiles()
-    count = Ref{Cint}(0)
-    fptrs = GetDroppedFiles(count)
-    fcstr = Base.unsafe_wrap(Vector{Cstring}, fptrs, count[])
-    return map(Base.unsafe_string, fcstr)
+function Base.getindex(it::RayFilePathList, i)
+    list = Base.unsafe_wrap(Vector{Cstring}, it.paths, it.count)
+    checkbounds(list, i)
+    return Base.unsafe_string(list[i])
 end
 
 """
@@ -42,7 +39,7 @@ struct RayFileData
     data::Vector{UInt8}
 
     function RayFileData(filename::AbstractString)
-        bytes = Ref{Cuint}(0)
+        bytes = Ref{Cint}(0)
         dptr = LoadFileData(filename, bytes)
         fdata = Base.unsafe_wrap(Vector{UInt8}, dptr, bytes[])
         finalizer(fdata) do x

@@ -22,9 +22,9 @@ end
 
 const RayQuaternion = RayVector4
 
-rayvector(v::Vararg{<:Real, 2}) = RayVector2(v)
-rayvector(v::Vararg{<:Real, 3}) = RayVector3(v)
-rayvector(v::Vararg{<:Real, 4}) = RayVector4(v)
+rayvector(v::Vararg{T, 2}) where {T <: Real} = RayVector2(v)
+rayvector(v::Vararg{T, 3}) where {T <: Real} = RayVector3(v)
+rayvector(v::Vararg{T, 4}) where {T <: Real} = RayVector4(v)
 
 const RayMatrix = SMatrix{4, 4, Cfloat, 16}
 const RayMatrix2x2 = SMatrix{2, 2, Cfloat, 4}

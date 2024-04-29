@@ -1,7 +1,7 @@
 name = "Raylib"
 uuid = "681baf3e-1d1e-48c9-b5e5-b1aea2d6d4d9"
 authors = ["chengchingwen <adgjl5645@hotmail.com> and contributors"]
-version = "0.2.0"
+version = "0.3.0"
 
 [deps]
 CEnum = "fa961155-64e5-5f13-b03f-caf6b980ea82"
@@ -12,7 +12,6 @@ StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 [compat]
 CEnum = "0.4"
 Colors = "0.12"
-Raylib_jll = "4.0"
 StaticArrays = "1.2"
 julia = "1.6"
 

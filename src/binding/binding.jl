@@ -107,7 +107,7 @@ let
             end
         end
         @assert all(isempty, (stack, char_stream))
-        return records[]
+        return first(records)
     end
 
     builder = function ()

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="Windows-1252" ?>
 <raylibAPI>
     <Structs count="6">
-        <Struct name="Vector2" fieldCount="2" desc="">
+        <Struct name="Vector2" fieldCount="2" desc="Vector2 type">
             <Field type="float" name="x" desc="" />
             <Field type="float" name="y" desc="" />
         </Struct>
-        <Struct name="Matrix2x2" fieldCount="4" desc="">
+        <Struct name="Matrix2x2" fieldCount="4" desc="Matrix2x2 type (used for polygon shape rotation matrix)">
             <Field type="float" name="m00" desc="" />
             <Field type="float" name="m01" desc="" />
             <Field type="float" name="m10" desc="" />
@@ -13,8 +13,8 @@
         </Struct>
         <Struct name="PhysicsVertexData" fieldCount="3" desc="">
             <Field type="unsigned int" name="vertexCount" desc="Vertex count (positions and normals)" />
-            <Field type="Vector2" name="positions[PHYSAC_MAX_VERTICES]" desc="Vertex positions vectors" />
-            <Field type="Vector2" name="normals[PHYSAC_MAX_VERTICES]" desc="Vertex normals vectors" />
+            <Field type="Vector2[PHYSAC_MAX_VERTICES]" name="positions" desc="Vertex positions vectors" />
+            <Field type="Vector2[PHYSAC_MAX_VERTICES]" name="normals" desc="Vertex normals vectors" />
         </Struct>
         <Struct name="PhysicsShape" fieldCount="5" desc="">
             <Field type="PhysicsShapeType" name="type" desc="Shape type (circle or polygon)" />
@@ -50,15 +50,19 @@
             <Field type="PhysicsBody" name="bodyB" desc="Manifold second physics body reference" />
             <Field type="float" name="penetration" desc="Depth of penetration from collision" />
             <Field type="Vector2" name="normal" desc="Normal direction vector from 'a' to 'b'" />
-            <Field type="Vector2" name="contacts[2]" desc="Points of contact during collision" />
+            <Field type="Vector2[2]" name="contacts" desc="Points of contact during collision" />
             <Field type="unsigned int" name="contactsCount" desc="Current collision number of contacts" />
             <Field type="float" name="restitution" desc="Mixed restitution during collision" />
             <Field type="float" name="dynamicFriction" desc="Mixed dynamic friction during collision" />
             <Field type="float" name="staticFriction" desc="Mixed static friction during collision" />
         </Struct>
     </Structs>
+    <Aliases count="0">
+    </Aliases>
     <Enums count="0">
     </Enums>
+    <Callbacks count="0">
+    </Callbacks>
     <Functions count="19">
         <Function name="InitPhysics" retType="void" paramCount="0" desc="Initializes physics system">
         </Function>
